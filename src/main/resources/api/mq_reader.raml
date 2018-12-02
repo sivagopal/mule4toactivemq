@@ -1,0 +1,36 @@
+#%RAML 1.0
+title: Sample API
+types:
+  message: |
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/draft-03/schema",
+      "id": "http://jsonschema.net",
+      "required": true,
+      "properties": {
+        "songTitle": {
+          "type": "string",
+          "required": true
+        },
+        "albumId": {
+          "type": "string",
+          "required": true,
+          "minLength": 36,
+          "maxLength": 36
+        }
+      }
+    }
+/mq:
+  post:
+    description: |
+      sends messages to mq
+    body:
+      applicatio/jsonb:
+        type: message
+        example: |
+          {
+            "songId": "550e8400-e29b-41d4-a716-446655440000",
+            "songTitle": "Get Lucky",
+            "albumId": "183100e3-0e2b-4404-a716-66104d440550"
+          }
+    
